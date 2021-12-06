@@ -17,6 +17,7 @@ public class CollisionDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("OnTriggerEnter()");
+        if (_mobileUnit == null) { return; }
         if (!_mobileUnit._reachedTarget) { return; }
         GameObject go = other.gameObject;
         if (go.tag != CollisionTag) { return; }
