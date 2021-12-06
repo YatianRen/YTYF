@@ -37,7 +37,7 @@ public class YT_second : MonoBehaviour
 
     public void StartSecondConfigure(GameObject going)
     {
-        Debug.Log("work");
+        
         Debug.Log("Start secondConfiguration");
         //make sure there is a spot to configure the agent
         List<GameObject> keys = Configure.Keys.ToList();
