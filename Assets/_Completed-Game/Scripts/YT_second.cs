@@ -8,11 +8,12 @@ using System.Linq;
 public class YT_second : MonoBehaviour
 {
     public GameObject Targetforsecond;
-    public NavMeshAgent agent;
     public GameObject[] Positions;
     public GameObject Prefab;
 
     private Dictionary<GameObject, GameObject> Configure = new Dictionary<GameObject, GameObject>();
+    public NavMeshAgent agent;
+    
     [HideInInspector]
     //public Factory _factory;
     public bool _reachedTargetforsecond = false;
@@ -20,7 +21,7 @@ public class YT_second : MonoBehaviour
 
     // Start is called before the first frame update
 
-    void Start()
+    private void Start()
     {
         Targetforsecond = GameObject.FindWithTag("Targetforsecond");
         agent = this.GetComponent<NavMeshAgent>();
@@ -29,10 +30,14 @@ public class YT_second : MonoBehaviour
         {
             Configure.Add(pos, null);
         }
+        GameObject going = Prefab;
     }
     // Update is called once per frame
-    public void StartConfigure(GameObject go)
+
+
+    public void StartSecondConfigure(GameObject going)
     {
+        Debug.Log("work");
         Debug.Log("Start secondConfiguration");
         //make sure there is a spot to configure the agent
         List<GameObject> keys = Configure.Keys.ToList();
@@ -40,15 +45,15 @@ public class YT_second : MonoBehaviour
         {
             //guard statement
             if (Configure[key] != null) { continue; }
-            Configure[key] = go;
+            Configure[key] = going;
 
             //disable agent, this agent is now the leader
-            NavMeshAgent agent = go.GetComponentInParent<NavMeshAgent>();
-            CollisionDetection detect = go.GetComponent<CollisionDetection>();
-            YT_second yT_Second = go.GetComponentInParent<YT_second>();
-            //agent.enabled = false;
-            //detect.enabled = false;
-            //yT_Second.enabled = false;
+            NavMeshAgent agent = going.GetComponentInParent<NavMeshAgent>();
+            CollisionDetection detect = going.GetComponent<CollisionDetection>();
+            YT_second yT_Second = going.GetComponentInParent<YT_second>();
+            agent.enabled = false;
+            detect.enabled = false;
+            yT_Second.enabled = false;
             break;
         }
     }
@@ -89,8 +94,8 @@ public class YT_second : MonoBehaviour
                 List<GameObject> keys = Configure.Keys.ToList();
                 foreach (GameObject key in keys)
                 {
-                    GameObject go = Configure[key];
-                    Destroy(go);
+                    GameObject going = Configure[key];
+                    Destroy(going);
 
                 }
                 
@@ -101,12 +106,25 @@ public class YT_second : MonoBehaviour
                 prefab.transform.position += new Vector3(0, 0, 0);
                 prefab.transform.position += new Vector3(0, moveY, 0);
 
-                Debug.Log("All Configured");
+                Debug.Log("All Configuredsecond");
                 //Destroy(gameObject); //destroy this last, because it will destroy this script
             }
             return;
         }
-        
+        //if (!agent.pathPending)
+        //{
+            //if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                //if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    // Done
+                    //Debug.Log(gameObject.name + " has reached Target");
+                    //_reachedTargetforsecond = true;
+                    //agent.enabled = false;
+                }
+            }
+        }
+
 
     }
-}
+

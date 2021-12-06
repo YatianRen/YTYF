@@ -95,7 +95,7 @@ public class MobileUnit : MonoBehaviour
                     Destroy(go);
 
                 }
-                Destroy(Target);
+                //Destroy(Target);
 
                 //instantiate factory
                 GameObject prefab = Instantiate(Prefab, transform.position, transform.rotation, null);

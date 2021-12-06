@@ -1,6 +1,0 @@
-Base path: 'D:/install place/unity/Editor/Data', plugins path 'D:/install place/unity/Editor/Data/PlaybackEngines'
-Cmd: initializeCompiler
-
-Cmd: shutdown
-
-Quitting shader compiler process
